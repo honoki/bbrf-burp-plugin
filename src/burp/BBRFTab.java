@@ -9,6 +9,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
@@ -65,6 +66,17 @@ public class BBRFTab extends JPanel {
 				burp.testBBRFClient();
 			}
 		});
+		
+		JButton btnCopyScope = new JButton("Copy scope");
+		btnCopyScope.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String in_scope = burp.bbrf("scope in -p "+textField_1.getText());
+				String out_scope = burp.bbrf("scope out -p "+textField_1.getText());
+				
+				burp.generateScope(in_scope.split("\n"), out_scope.split("\n"));
+				//textPane.setText(result);
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -80,7 +92,9 @@ public class BBRFTab extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
 									.addGap(3)
-									.addComponent(btnLoad))
+									.addComponent(btnLoad)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnCopyScope))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -113,7 +127,8 @@ public class BBRFTab extends JPanel {
 							.addComponent(lblBbrfProgram))
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(btnLoad)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnCopyScope)))
 					.addGap(26)
 					.addComponent(chckbxParseDomains)
 					.addGap(28)

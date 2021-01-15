@@ -317,5 +317,22 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 		
 		return menu;
 	}
+
+	public void generateScope(String[] inscope, String[] outscope) {
+		
+		String config = "{\"target\":{\"scope\":{\"advanced_mode\":true, \"include\":[%INCLUDE%], \"exclude\":[%EXCLUDE%]}}}";
+		String scope_element = "{\"enabled\": true, \"protocol\":\"any\", \"host\":\"%HOSTNAME%$\"}";
+		
+		for(String host : inscope) {
+			config = config.replace("%INCLUDE%", scope_element.replace("%HOSTNAME%", host.replace("*", ""))+",%INCLUDE%");
+		}
+		for(String host : outscope) {
+			config = config.replace("%EXCLUDE%", scope_element.replace("%HOSTNAME%", host.replace("*", ""))+",%EXCLUDE%");
+		}
+		
+		config = config.replaceAll(",?%(EX|IN)CLUDE%", "");
+		
+		callbacks.loadConfigFromJson(config);
+	}
 		
 }
