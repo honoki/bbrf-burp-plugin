@@ -25,8 +25,8 @@ The Burp plugin enables easy integration of your daily testing in Burp Suite wit
 
 ## Troubleshooting
 
-This extention assumes your installation's default `python` is version >= 3 and that you have the [bbrf client](https://github.com/honoki/bbrf-client) installed on your system.
+This extention assumes you have the [bbrf client](https://github.com/honoki/bbrf-client) installed on your system:
 
-* `pip3 install requests slackclient==1.3.2 docopt`
+* `pip3 install bbrf`
 
 Everything that is sent to BBRF is matched against the defined scope of the program, so ensure you have configured your inscope and outscope according to your preferences and the program rules.

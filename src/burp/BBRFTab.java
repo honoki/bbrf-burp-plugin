@@ -17,7 +17,6 @@ public class BBRFTab extends JPanel {
 
 	private BurpExtender burp;
 	private JTextField textField_1;
-	protected JTextField textField_2;
 	
 	/**
 	 * Create the panel.
@@ -54,19 +53,6 @@ public class BBRFTab extends JPanel {
 			}
 		});
 		
-		
-		JLabel lblBbrfClientLocation = new JLabel("BBRF client location");
-		
-		textField_2 = new JTextField(burp.bbrf_py);
-		textField_2.setColumns(10);
-		
-		JButton btnTest = new JButton("Test");
-		btnTest.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				burp.testBBRFClient();
-			}
-		});
-		
 		JButton btnCopyScope = new JButton("Copy scope");
 		btnCopyScope.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,46 +67,25 @@ public class BBRFTab extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(45)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(46)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblBbrfClientLocation)
-								.addComponent(lblBbrfProgram))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
-									.addGap(3)
-									.addComponent(btnLoad)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCopyScope))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnTest))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(45)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(chckbxParseDomains, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnSave)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(45)
-							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblBbrfProgram)
+							.addGap(43)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 318, GroupLayout.PREFERRED_SIZE)
+							.addGap(3)
+							.addComponent(btnLoad)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnCopyScope))
+						.addComponent(chckbxParseDomains, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSave))
 					.addContainerGap(27, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(61)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblBbrfClientLocation))
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnTest)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(40)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(4)
@@ -129,13 +94,13 @@ public class BBRFTab extends JPanel {
 							.addComponent(btnLoad)
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btnCopyScope)))
-					.addGap(26)
+					.addGap(18)
 					.addComponent(chckbxParseDomains)
-					.addGap(28)
+					.addGap(18)
 					.addComponent(btnSave)
 					.addGap(18)
 					.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGap(84))
 		);
 		setLayout(groupLayout);
 

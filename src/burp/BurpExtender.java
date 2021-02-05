@@ -40,7 +40,6 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	private PrintWriter stdout;
 	
 	protected String program_name;
-	protected String bbrf_py;
 	
 	protected BBRFProjectSettings settings;
 	
@@ -138,8 +137,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	protected String bbrf(String cmd) {
 		
 		ArrayList<String> command = new ArrayList<String>();
-		command.add("python");
-		command.add(bbrf_py);
+		command.add("bbrf");
 		for(String c : cmd.split(" ")) {
 			command.add(c);
 		}
@@ -170,7 +168,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	}
 	
 	private void loadSettings() {
-		this.bbrf_py = callbacks.loadExtensionSetting("client-location");
+//		this.bbrf_py = callbacks.loadExtensionSetting("client-location");
 //		this.bbrf_gateway_url = callbacks.loadExtensionSetting("api-gateway-url");
 //		this.program_name = callbacks.loadExtensionSetting("program-name");
 		
@@ -180,17 +178,11 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	protected void saveSettings() {
 		// callbacks.saveExtensionSetting("api-gateway-url", bbrf_gateway_url);
 		// callbacks.saveExtensionSetting("program-name", program_name);
-		callbacks.saveExtensionSetting("client-location", bbrf_py);
+		// callbacks.saveExtensionSetting("client-location", bbrf_py);
 		
 		settings.saveProjectSetting("program-name", program_name);
 	}
 	
-	protected void testBBRFClient() {
-		this.bbrf_py = myPanel.textField_2.getText();
-		logger("Testing bbrf client:");
-		logger(bbrf("programs"));
-	}
-
 	@Override
 	public void extensionUnloaded() {
 		// TODO Any extensions that start background threads or open system resources (such as files or database
