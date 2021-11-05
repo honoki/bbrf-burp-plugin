@@ -25,11 +25,15 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	 *  	- show a tab to configure the bbrf AWS lamba portal location
 	 *  	- or, alternatively, point to a local copy of the bbrf-client?
 	 *  	- specify the program name to be used with bbrf (dropdown?)
+	 *      - checkbox to toggle publishing a PAC script that can be used by browser
 	 *  - passive:
 	 *  	- parse hostnames in all responses
 	 *  	- match against in scope client-side (to reduce unnecessary requests to the api gateway)
 	 *   	- match against known domains client-side? this requires keeping a copy in memory or otherwise 1 extra request every time, not ideal;
 	 *   	- push all matches to bbrf to handle
+	 *  - web server:
+	 *      publish a PAC script that can be used by the browser to automatically
+	 *      switch proxy settings based on the scope defined by Burp
 	 */
 	
 	
@@ -319,7 +323,8 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 			config = config.replace("%INCLUDE%", scope_element.replace("%HOSTNAME%", host.replace("*", ""))+",%INCLUDE%");
 		}
 		for(String host : outscope) {
-			config = config.replace("%EXCLUDE%", scope_element.replace("%HOSTNAME%", host.replace("*", ""))+",%EXCLUDE%");
+			if (host != "")
+				config = config.replace("%EXCLUDE%", scope_element.replace("%HOSTNAME%", host.replace("*", ""))+",%EXCLUDE%");
 		}
 		
 		config = config.replaceAll(",?%(EX|IN)CLUDE%", "");
