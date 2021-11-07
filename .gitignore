@@ -1,21 +1,5 @@
-*target*
-*.jar
-*.war
-*.ear
-*.class
+# Ignore Gradle project-specific cache directory
+.gradle
 
-# eclipse specific git ignore
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
+# Ignore Gradle build output directory
+build

@@ -42,6 +42,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	private IExtensionHelpers helpers;
 	private ArrayList<String> all_domains = new ArrayList<>();
 	private PrintWriter stdout;
+	private PrintWriter stderr;
 	
 	protected String program_name;
 	
@@ -55,6 +56,9 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 		callbacks.setExtensionName ("BBRF for Burp");
 		this.helpers = callbacks.getHelpers();
 		this.stdout = new PrintWriter(callbacks.getStdout(), true);
+		this.stderr = new PrintWriter(callbacks.getStderr(), true);
+		
+		logger("BBRF for Burp initialized.");
 		this.callbacks = callbacks;
 		
 		// store project settings in site map
@@ -140,12 +144,30 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	
 	protected String bbrf(String cmd) {
 		
+		stdout.println(program_name);
+		stdout.println(cmd);
+
+		String[] split_program = cmd.split(" -p ");
+
+		// Address issue #2 if program names contain spaces
+		if(split_program[1].contains(" ")) {
+			cmd = split_program[0];
+		}
+
 		ArrayList<String> command = new ArrayList<String>();
 		command.add("bbrf");
 		for(String c : cmd.split(" ")) {
 			command.add(c);
 		}
+
+		// Address issue #2 if program names contain spaces
+		if(split_program[1].contains(" ")) {
+			command.add("-p");
+			command.add(split_program[1]);
+		}
 		
+		stdout.println(command);
+
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		processBuilder.redirectErrorStream(true);
 		
@@ -183,7 +205,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 		// callbacks.saveExtensionSetting("api-gateway-url", bbrf_gateway_url);
 		// callbacks.saveExtensionSetting("program-name", program_name);
 		// callbacks.saveExtensionSetting("client-location", bbrf_py);
-		
+		logger("Saving settings...");
 		settings.saveProjectSetting("program-name", program_name);
 	}
 	
@@ -251,7 +273,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 	}
 	
 	// Logging helper functions
-	private void logger(String out) {
+	void logger(String out) {
 		stdout.println(out);
 	}
 
@@ -286,7 +308,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 					if(!domains.contains(domain)) domains.add(domain);
 				}
 				
-				if(domains.size() > 0) logger(bbrf("domain add "+String.join(" ", domains)+ " -s burp"));
+				if(domains.size() > 0) logger(bbrf("domain add "+String.join(" ", domains)+ " -s burp -p "+program_name));
 				
 			}
 		});
@@ -302,7 +324,7 @@ public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITa
 					if(!urls.contains(url)) urls.add(helpers.analyzeRequest(req).getUrl().toString());
 				}
 				
-				if(urls.size() > 0) logger(bbrf("url add "+String.join(" ", urls)+ " -s burp"));
+				if(urls.size() > 0) logger(bbrf("url add "+String.join(" ", urls)+ " -s burp -p "+program_name));
 				
 			}
 		});

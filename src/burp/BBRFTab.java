@@ -9,7 +9,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
@@ -36,7 +35,6 @@ public class BBRFTab extends JPanel {
 				burp.program_name = textField_1.getText();
 				
 				burp.saveSettings();
-
 			}
 		});
 		
@@ -60,9 +58,9 @@ public class BBRFTab extends JPanel {
 				String out_scope = burp.bbrf("scope out -p "+textField_1.getText());
 				
 				burp.generateScope(in_scope.split("\n"), out_scope.split("\n"));
-				//textPane.setText(result);
 			}
 		});
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -70,6 +68,7 @@ public class BBRFTab extends JPanel {
 					.addGap(45)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSave)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblBbrfProgram)
 							.addGap(43)
@@ -78,9 +77,8 @@ public class BBRFTab extends JPanel {
 							.addComponent(btnLoad)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnCopyScope))
-						.addComponent(chckbxParseDomains, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSave))
-					.addContainerGap(27, Short.MAX_VALUE))
+						.addComponent(chckbxParseDomains, GroupLayout.PREFERRED_SIZE, 342, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -96,11 +94,12 @@ public class BBRFTab extends JPanel {
 							.addComponent(btnCopyScope)))
 					.addGap(18)
 					.addComponent(chckbxParseDomains)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(37)
 					.addComponent(btnSave)
 					.addGap(18)
-					.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-					.addGap(84))
+					.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+					.addGap(38))
 		);
 		setLayout(groupLayout);
 

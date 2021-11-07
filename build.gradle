@@ -1,0 +1,33 @@
+// copied from https://parsiya.net/blog/2019-12-02-developing-and-debugging-java-burp-extensions-with-visual-studio-code/#creating-a-skeleton-extension
+
+apply plugin: 'java'
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+     mavenCentral()
+}
+
+dependencies {
+    implementation 'net.portswigger.burp.extender:burp-extender-api:2.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+configurations {
+  customConfig.extendsFrom implementation
+}
+
+task bigJar(type: Jar) {
+    baseName = project.name + '-all'
+    duplicatesStrategy = 'include'
+    from { configurations.customConfig.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
