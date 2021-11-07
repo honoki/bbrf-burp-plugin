@@ -10,7 +10,7 @@ For more information about BBRF, read the blog post on https://honoki.net/2020/1
 
 The Burp plugin enables easy integration of your daily testing in Burp Suite with your personal BBRF server.
 
-![screenshot1](burp-bbrf-screenshot-1.png)
+![screenshot1](docs/burp-bbrf-screenshot-1.png)
 
 ### Features
 
@@ -20,7 +20,7 @@ The Burp plugin enables easy integration of your daily testing in Burp Suite wit
 * Select and right-click a number of domains or urls and use the menu item "Send to BBRF" to store them in your database;
 * Use the "Copy scope" button to fetch the inscope and outscope from BBRF and load it into Burp's target scope.
 
-    ![screenshot2](burp-bbrf-screenshot-2.png)
+    ![screenshot2](docs/burp-bbrf-screenshot-2.png)
 
 
 ## Troubleshooting
