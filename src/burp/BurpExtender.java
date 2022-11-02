@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-public class BurpExtender implements IExtensionStateListener, IScannerCheck, ITab, IContextMenuFactory {
+public class BurpExtender implements IBurpExtender, IExtensionStateListener, IScannerCheck, ITab, IContextMenuFactory {
 	
 	/*
 	 * What this extension should do:
