@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "c:\\Users\\pieter\\Documents\\bbrf\\bbrf-burp-pluginbigJarbbrf-burp-plugin",
+			"script": "bigJar",
+			"description": "",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"project": "bbrf-burp-plugin",
+			"buildFile": "C:\\Users\\pieter\\Documents\\bbrf\\bbrf-burp-plugin\\build.gradle",
+			"rootProject": "bbrf-burp-plugin",
+			"projectFolder": "c:\\Users\\pieter\\Documents\\bbrf\\bbrf-burp-plugin",
+			"workspaceFolder": "c:\\Users\\pieter\\Documents\\bbrf\\bbrf-burp-plugin",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: bigJar"
+		}
+	]
+}

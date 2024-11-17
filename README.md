@@ -1,4 +1,5 @@
-# bbrf-burp-plugin
+[![Mastodon](https://img.shields.io/mastodon/follow/110779442452085429?domain=https%3A%2F%2Finfosec.exchange&style=flat-square&logo=mastodon&logoColor=fff)](https://infosec.exchange/@honoki)
+[![BlueSky](https://img.shields.io/badge/@honoki.net-0285FA?logo=bluesky&logoColor=fff&style=flat-square)](https://bsky.app/profile/honoki.net)
 
 ## What's BBRF?
 
@@ -30,3 +31,9 @@ This extention assumes you have the [bbrf client](https://github.com/honoki/bbrf
 * `pip3 install bbrf`
 
 Everything that is sent to BBRF is matched against the defined scope of the program, so ensure you have configured your inscope and outscope according to your preferences and the program rules.
+
+## See also
+
+* [BBRF Client](https://github.com/honoki/bbrf-client)
+* [BBRF Server](https://github.com/honoki/bbrf-server)
+* [BBRF Dashboard](https://github.com/honoki/bbrf-dashboard)
